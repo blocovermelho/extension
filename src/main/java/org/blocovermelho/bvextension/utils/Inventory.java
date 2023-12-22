@@ -28,7 +28,7 @@ public class Inventory {
                     sworld.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.1f, (sworld.random.nextFloat() - sworld.random.nextFloat()) * 1);
                     entity.increaseStat(Stats.PICKED_UP.getOrCreateStat(item), count);
                 } else {
-                    dropStack(sworld, pos, stack);
+                    dropStack(sworld, pos, is);
                 }
             });
         }
