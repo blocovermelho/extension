@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "icon": "assets/bv-extension/icon.png",
-  "environment": "server",
+  "environment": "*",
   "entrypoints": {
     "main": [
       "org.blocovermelho.bvextension.Extension"
