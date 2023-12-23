@@ -6,7 +6,8 @@
   "mixins": [
     "carefulBreak.BlockMixin",
     "carefulBreak.TallBlockMixin",
-    "carefulBreak.PistonHeadMixin"
+    "carefulBreak.PistonHeadMixin",
+    "carefulBreak.BedMixin"
   ],
   "client": [
   ],
