@@ -7,6 +7,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.kyori.adventure.platform.fabric.FabricServerAudiences;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.ServerCommandSource;
 import org.apache.commons.io.IOUtils;
@@ -20,6 +24,8 @@ import java.util.Map;
 
 
 public class Extension implements CarpetExtension, ModInitializer {
+    public static FabricServerAudiences audiences;
+
     @Override
     public String version() {
         return "bv-extension";
@@ -33,6 +39,12 @@ public class Extension implements CarpetExtension, ModInitializer {
     @Override
     public void onInitialize() {
         CarpetServer.manageExtension(new Extension());
+
+        ServerLifecycleEvents.SERVER_STARTED.register(x -> {
+            audiences = FabricServerAudiences.of(x);
+        });
+
+        ServerLifecycleEvents.SERVER_STOPPED.register(x -> { audiences = null; });
     }
 
     @Override
