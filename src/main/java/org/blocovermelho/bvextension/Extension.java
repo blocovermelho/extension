@@ -15,6 +15,7 @@ import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.ServerCommandSource;
 import org.apache.commons.io.IOUtils;
 import org.blocovermelho.bvextension.commands.GamemodeSwitchCommand;
+import org.blocovermelho.bvextension.events.RestorePositionLogoff;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,6 +47,8 @@ public class Extension implements CarpetExtension, ModInitializer {
         });
 
         ServerLifecycleEvents.SERVER_STOPPED.register(x -> { audiences = null; });
+
+        ServerPlayConnectionEvents.DISCONNECT.register(new RestorePositionLogoff());
     }
 
     @Override
