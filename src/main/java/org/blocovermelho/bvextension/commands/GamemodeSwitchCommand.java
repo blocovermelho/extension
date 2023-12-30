@@ -23,7 +23,7 @@ import static net.minecraft.server.command.CommandManager.literal;
 
 public class GamemodeSwitchCommand {
 
-    public static HashMap<UUID, Pair<RegistryKey<World>, Pair<BlockPos, Pair<Float, Float>>>> oldPos = new HashMap<>();
+    public static HashMap<UUID, LastRecordedPosition> oldPos = new HashMap<>();
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(literal("s").executes(c -> {
             var source = (ServerCommandSource) c.getSource();
@@ -35,11 +35,9 @@ public class GamemodeSwitchCommand {
 
             var gamemode = player.interactionManager.getGameMode();
             if (gamemode == GameMode.SURVIVAL) {
-                oldPos.put(player.getUuid(), new Pair<>(
+                oldPos.put(player.getUuid(), new LastRecordedPosition(player.getBlockPos(),
                         player.getWorld().getRegistryKey(),
-                        new Pair<>(player.getBlockPos(),
-                                new Pair<>(player.getYaw(), player.getPitch())
-                        )));
+                        player.getYaw(), player.getPitch()));
                 player.changeGameMode(GameMode.SPECTATOR);
                 player.sendMessage(Text.literal("[/s] SURVIVAL -> SPECTATOR"), true);
                 player.playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, SoundCategory.PLAYERS, 0.4f, 1);
@@ -48,9 +46,9 @@ public class GamemodeSwitchCommand {
 
                 assert pos != null;
 
-                var world = source.getServer().getWorld(pos.getA());
+                var world = source.getServer().getWorld(pos.world());
 
-                player.teleport(world, pos.getB().getA().getX(), pos.getB().getA().getY(), pos.getB().getA().getZ(), pos.getB().getB().getA(), pos.getB().getB().getB());
+                player.teleport(world, pos.pos().getX(), pos.pos().getY(), pos.pos().getZ(), pos.yaw(), pos.pitch());
 
                 player.changeGameMode(GameMode.SURVIVAL);
                 player.sendMessage(Text.literal("[/s] SPECTATOR -> SURVIVAL"), true);
