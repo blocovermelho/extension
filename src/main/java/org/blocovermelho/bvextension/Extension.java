@@ -24,6 +24,7 @@ import java.util.Map;
 
 
 public class Extension implements CarpetExtension, ModInitializer {
+    public static MiniMessage MM = MiniMessage.miniMessage();
     public static FabricServerAudiences audiences;
 
     @Override
