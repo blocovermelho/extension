@@ -27,6 +27,10 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "carpet:fabric-carpet:${project.carpet_version}"
 
+
+    api("net.kyori:adventure-text-minimessage:${project.minimessage_version}")
+    modImplementation include("net.kyori:adventure-platform-fabric:${project.adventure_version}")
+
 }
 
 processResources {
