@@ -15,6 +15,7 @@ import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.ServerCommandSource;
 import org.apache.commons.io.IOUtils;
 import org.blocovermelho.bvextension.commands.GamemodeSwitchCommand;
+import org.blocovermelho.bvextension.commands.SharePosCommand;
 import org.blocovermelho.bvextension.events.RestorePositionLogoff;
 
 import java.io.IOException;
@@ -54,6 +55,7 @@ public class Extension implements CarpetExtension, ModInitializer {
     @Override
     public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess commandBuildContext) {
         GamemodeSwitchCommand.register(dispatcher);
+        SharePosCommand.register(dispatcher);
     }
 
     @Override
