@@ -8,7 +8,8 @@
     "carefulBreak.TallBlockMixin",
     "carefulBreak.PistonHeadMixin",
     "carefulBreak.BedMixin",
-    "BotsDontSleep"
+    "BotsDontSleep",
+    "BotPrefixPlayerList"
   ],
   "client": [
   ],

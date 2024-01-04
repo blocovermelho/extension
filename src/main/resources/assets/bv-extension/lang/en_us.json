@@ -1,4 +1,5 @@
 {
   "carpet.rule.carefulBreak.desc": "Places the mined block in the player inventory when sneaking",
-  "carpet.rule.botsDontSleep.desc" : "Makes carpet bots don't count towards playersSleepingPercentage"
+  "carpet.rule.botsDontSleep.desc" : "Makes carpet bots don't count towards playersSleepingPercentage",
+  "carpet.rule.botPlayerListPrefix.desc": "Adds a prefix to bots on the player list"
 }

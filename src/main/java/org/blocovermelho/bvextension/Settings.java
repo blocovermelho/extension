@@ -15,4 +15,9 @@ public class Settings {
             categories = {SURVIVAL, EXPERIMENTAL, "bv-extension"}
     )
     public static boolean botsDontSleep = false;
+
+    @Rule(
+            categories = {SURVIVAL, "PROTOCOL", "bv-extension" }
+    )
+    public static boolean botPlayerListPrefix = false;
 }
