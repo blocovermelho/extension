@@ -4,6 +4,7 @@ import carpet.CarpetServer;
 import carpet.patches.EntityPlayerMPFake;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.server.world.SleepManager;
+import net.minecraft.world.GameMode;
 import org.blocovermelho.bvextension.Settings;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,7 +27,7 @@ public class BotsDontSleep {
         var players = CarpetServer.minecraft_server.getPlayerManager().getPlayerList();
 
         var bots = (int) players.stream().filter(p -> {
-            return p instanceof EntityPlayerMPFake;
+            return p instanceof EntityPlayerMPFake && p.interactionManager.getGameMode() != GameMode.SPECTATOR;
         }).count();
 
         return original - bots;
