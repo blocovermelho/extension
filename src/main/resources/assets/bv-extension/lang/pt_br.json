@@ -1,3 +1,4 @@
 {
-  "carpet.rule.carefulBreak.desc": "Coloca o bloco minerado direto no inventário quando o jogador está agachado"
+  "carpet.rule.carefulBreak.desc": "Coloca o bloco minerado direto no inventário quando o jogador está agachado",
+  "carpet.rule.botsDontSleep.desc" : "Faz com que bots do carpet não contem para a gamerule playersSleepingPercentage"
 }

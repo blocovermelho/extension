@@ -1,3 +1,4 @@
 {
-  "carpet.rule.carefulBreak.desc": "Places the mined block in the player inventory when sneaking"
+  "carpet.rule.carefulBreak.desc": "Places the mined block in the player inventory when sneaking",
+  "carpet.rule.botsDontSleep.desc" : "Makes carpet bots don't count towards playersSleepingPercentage"
 }

@@ -10,4 +10,9 @@ public class Settings {
             categories = {SURVIVAL, EXPERIMENTAL, "bv-extension"}
     )
     public static boolean carefulBreak = false;
+
+    @Rule(
+            categories = {SURVIVAL, EXPERIMENTAL, "bv-extension"}
+    )
+    public static boolean botsDontSleep = false;
 }
