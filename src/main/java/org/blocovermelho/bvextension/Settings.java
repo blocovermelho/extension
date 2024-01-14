@@ -20,4 +20,11 @@ public class Settings {
             categories = {SURVIVAL, "PROTOCOL", "bv-extension" }
     )
     public static boolean botPlayerListPrefix = false;
+
+    @Rule(
+            categories = {SURVIVAL, "bv-extension" }
+    )
+    public static boolean disableEndermanGriefing = false;
+
+
 }

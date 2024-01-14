@@ -1,5 +1,6 @@
 {
   "carpet.rule.carefulBreak.desc": "Coloca o bloco minerado direto no inventário quando o jogador está agachado",
   "carpet.rule.botsDontSleep.desc" : "Faz com que bots do carpet não contem para a gamerule playersSleepingPercentage",
-  "carpet.rule.botPlayerListPrefix.desc": "Adiciona um prefixo aos bots na lista de jogadores"
+  "carpet.rule.botPlayerListPrefix.desc": "Adiciona um prefixo aos bots na lista de jogadores",
+  "carpet.rule.disableEndermanGriefing.desc" : "Desabilita os endermans de pegar/colocar blocos"
 }

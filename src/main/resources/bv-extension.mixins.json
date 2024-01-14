@@ -4,12 +4,13 @@
   "package": "org.blocovermelho.bvextension.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "carefulBreak.BlockMixin",
-    "carefulBreak.TallBlockMixin",
-    "carefulBreak.PistonHeadMixin",
-    "carefulBreak.BedMixin",
+    "BotPrefixPlayerList",
     "BotsDontSleep",
-    "BotPrefixPlayerList"
+    "DisableEndermanGriefing",
+    "carefulBreak.BedMixin",
+    "carefulBreak.BlockMixin",
+    "carefulBreak.PistonHeadMixin",
+    "carefulBreak.TallBlockMixin"
   ],
   "client": [
   ],
