@@ -23,18 +23,21 @@ public abstract class BedMixin {
 
     @Redirect(method = "onBreak", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/HorizontalFacingBlock;onBreak(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/entity/player/PlayerEntity;)V"))
     public void onBreak(HorizontalFacingBlock instance, World world, BlockPos blockPos, BlockState blockState, PlayerEntity playerEntity) {
-        if (Settings.carefulBreak && playerEntity.isInSneakingPose()) {
-            var bedPart = blockState.get(BedBlock.PART);
-            var otherPartDirection = getDirectionTowardsOtherPart(bedPart, blockState.get(HorizontalFacingBlock.FACING));
-            var otherPart = blockPos.offset(otherPartDirection);
-            var headPart = bedPart == BedPart.FOOT ? world.getBlockState(otherPart) : blockState;
-            var stack = headPart.getBlock().asItem().getDefaultStack();
+        var bedPart = blockState.get(BedBlock.PART);
+        var otherPartDirection = getDirectionTowardsOtherPart(bedPart, blockState.get(HorizontalFacingBlock.FACING));
+        var otherPart = blockPos.offset(otherPartDirection);
+        var otherBlock = world.getBlockState(otherPart);
+        var headPart = bedPart == BedPart.FOOT ? otherBlock  : blockState;
+        var footPart = bedPart == BedPart.FOOT ? blockState : otherBlock;
+        var footPos = bedPart == BedPart.FOOT ? blockPos : otherPart;
 
+        if (Settings.carefulBreak && playerEntity.isInSneakingPose()) {
+            var stack = headPart.getBlock().asItem().getDefaultStack();
             putItem(headPart, world, (bedPart == BedPart.FOOT ? otherPart : blockPos), null, playerEntity, stack);
             world.setBlockState(bedPart == BedPart.FOOT ? otherPart : blockPos,  Blocks.AIR.getDefaultState(), 35);
             world.syncWorldEvent(playerEntity, 2001, bedPart == BedPart.FOOT ? otherPart : blockPos, Block.getRawIdFromState(blockState));
         } else {
-            Block.dropStacks(blockState, world, blockPos);
+            Block.dropStacks(footPart, world, footPos);
         }
     }
 }
