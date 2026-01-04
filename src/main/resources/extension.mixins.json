@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "org.blocovermelho.extension.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "DisableEndermanGreifing",
+    "LargaDissoEnderman",
+    "carefulBreak.BlockBreak"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "bv-extension",
+  "version": "${version}",
+  "name": "extension",
+  "description": "Carpet Mod extensions for Bloco Vermelho",
+  "authors": [],
+  "contact": {},
+  "license": "GPL-3.0",
+  "icon": "assets/extension/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "org.blocovermelho.extension.Extension"
+    ]
+  },
+  "mixins": [
+    "extension.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
