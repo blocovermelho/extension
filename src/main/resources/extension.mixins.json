@@ -7,7 +7,8 @@
     "DisableEndermanGreifing",
     "LargaDissoEnderman",
     "carefulBreak.BedLikeBreak",
-    "carefulBreak.BlockBreak"
+    "carefulBreak.BlockBreak",
+    "carefulBreak.PistonHeadLikeBreak"
   ],
   "client": [
   ],
