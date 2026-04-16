@@ -8,10 +8,16 @@ import net.minecraft.world.entity.monster.EnderMan;
 import org.blocovermelho.extension.Settings;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Slice;
 
 @Mixin(EnderMan.class)
 public class DisableEndermanGreifing {
-    @WrapOperation(method= "registerGoals", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V", ordinal = 6))
+    @WrapOperation(method= "registerGoals",
+            slice = @Slice(
+                    from = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/EnderMan$EndermanLeaveBlockGoal;<init>(Lnet/minecraft/world/entity/monster/EnderMan;)V")
+            ),
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V", ordinal = 0)
+    )
     void bvext$noop_endermanGriedingPlace (GoalSelector instance, int i, Goal goal, Operation<Void> original) {
         if (!Settings.disableEndermanGriefing) {
             return;
@@ -20,7 +26,11 @@ public class DisableEndermanGreifing {
         original.call(instance, i, goal);
     }
 
-    @WrapOperation(method= "registerGoals", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V", ordinal = 7))
+    @WrapOperation(method= "registerGoals",
+            slice = @Slice(
+                    from = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/EnderMan$EndermanTakeBlockGoal;<init>(Lnet/minecraft/world/entity/monster/EnderMan;)V")
+            ),
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V", ordinal = 0))
     void bvext$noop_endermanGriedingPick (GoalSelector instance, int i, Goal goal, Operation<Void> original) {
         if (!Settings.disableEndermanGriefing) {
             return;
