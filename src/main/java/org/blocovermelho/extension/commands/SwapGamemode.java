@@ -51,7 +51,7 @@ public class SwapGamemode {
             GameType into = mapping.get(from);
 
             player.setGameMode(into);
-            Component message = TagParser.QUICK_TEXT.parseNode(String.format("<yellow>[/s] <red>%s <white>-> <green>%s", from, into)).toText();
+            Component message = TagParser.QUICK_TEXT.parseNode(String.format("<yellow>[/s] <red>%s <white>-> <green>%s", from, into)).toComponent();
 
             player.sendSystemMessage(message, true);
 

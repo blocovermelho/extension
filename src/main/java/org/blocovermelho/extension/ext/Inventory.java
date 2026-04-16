@@ -12,15 +12,21 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jspecify.annotations.Nullable;
 
 
 import static net.minecraft.world.level.block.Block.dropResources;
@@ -46,7 +52,7 @@ public class Inventory {
                 }
 
                 if (entity.getInventory().add(is)) {
-                    sworld.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.1f, (sworld.random.nextFloat() - sworld.random.nextFloat()) * 1);
+                    sworld.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.1f, (sworld.getRandom().nextFloat() - sworld.getRandom().nextFloat()) * 1);
                     entity.awardStat(Stats.ITEM_PICKED_UP.get(item), count);
                 } else {
                     dropResources(state, sworld, pos, blockEntity, entity, stack);
@@ -61,7 +67,7 @@ public class Inventory {
             DataComponentMap components = sboxItem.getComponents();
             ItemContainerContents items = components.get(DataComponents.CONTAINER);
             if (items != null) {
-                return items.nonEmptyStream().findAny().isPresent();
+                return items.nonEmptyItemCopyStream().findAny().isPresent();
             }
 
             return false;
@@ -75,7 +81,7 @@ public class Inventory {
                 return -1;
             }
 
-            Item boxKind = ShulkerBoxBlock.getBlockByColor(box.getColor()).asItem();
+            Item boxKind = SBox.getBlockByColor(box.getColor()).asItem();
             for (int i = 0; i < inventory.getContainerSize(); i++) {
                 ItemStack stack = inventory.getItem(i);
                 if (stack.isEmpty()) continue;
@@ -92,6 +98,31 @@ public class Inventory {
                 return i;
             }
             return -1;
+        }
+
+        public static Block getBlockByColor(final @Nullable DyeColor color) {
+            if (color == null) {
+                return Blocks.SHULKER_BOX;
+            } else {
+                return switch (color) {
+                    case WHITE -> Blocks.WHITE_SHULKER_BOX;
+                    case ORANGE -> Blocks.ORANGE_SHULKER_BOX;
+                    case MAGENTA -> Blocks.MAGENTA_SHULKER_BOX;
+                    case LIGHT_BLUE -> Blocks.LIGHT_BLUE_SHULKER_BOX;
+                    case YELLOW -> Blocks.YELLOW_SHULKER_BOX;
+                    case LIME -> Blocks.LIME_SHULKER_BOX;
+                    case PINK -> Blocks.PINK_SHULKER_BOX;
+                    case GRAY -> Blocks.GRAY_SHULKER_BOX;
+                    case LIGHT_GRAY -> Blocks.LIGHT_GRAY_SHULKER_BOX;
+                    case CYAN -> Blocks.CYAN_SHULKER_BOX;
+                    case BLUE -> Blocks.BLUE_SHULKER_BOX;
+                    case BROWN -> Blocks.BROWN_SHULKER_BOX;
+                    case GREEN -> Blocks.GREEN_SHULKER_BOX;
+                    case RED -> Blocks.RED_SHULKER_BOX;
+                    case BLACK -> Blocks.BLACK_SHULKER_BOX;
+                    case PURPLE -> Blocks.PURPLE_SHULKER_BOX;
+                };
+            }
         }
     }
 }
