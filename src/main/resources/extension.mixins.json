@@ -6,6 +6,7 @@
   "mixins": [
     "DisableEndermanGreifing",
     "LargaDissoEnderman",
+    "carefulBreak.BedLikeBreak",
     "carefulBreak.BlockBreak"
   ],
   "client": [
