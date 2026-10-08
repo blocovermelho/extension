@@ -4,17 +4,17 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.GoalSelector;
-import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.monster.Enderman;
 import org.blocovermelho.extension.Settings;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Slice;
 
-@Mixin(EnderMan.class)
+@Mixin(Enderman.class)
 public class DisableEndermanGreifing {
     @WrapOperation(method= "registerGoals",
             slice = @Slice(
-                    from = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/EnderMan$EndermanLeaveBlockGoal;<init>(Lnet/minecraft/world/entity/monster/EnderMan;)V")
+                    from = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/Enderman$EndermanLeaveBlockGoal;<init>(Lnet/minecraft/world/entity/monster/Enderman;)V")
             ),
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V", ordinal = 0)
     )
@@ -28,7 +28,7 @@ public class DisableEndermanGreifing {
 
     @WrapOperation(method= "registerGoals",
             slice = @Slice(
-                    from = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/EnderMan$EndermanTakeBlockGoal;<init>(Lnet/minecraft/world/entity/monster/EnderMan;)V")
+                    from = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/Enderman$EndermanTakeBlockGoal;<init>(Lnet/minecraft/world/entity/monster/Enderman;)V")
             ),
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V", ordinal = 0))
     void bvext$noop_endermanGriedingPick (GoalSelector instance, int i, Goal goal, Operation<Void> original) {
