@@ -2,11 +2,11 @@ package org.blocovermelho.extension.mixin.carefulBreak;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AbstractBedBlock;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 import static org.blocovermelho.extension.ext.Inventory.putItem;
 
-@Mixin({BedBlock.class})
+@Mixin({AbstractBedBlock.class})
 public abstract class BedLikeBreak {
     @Shadow
     private static Direction getNeighbourDirection(BedPart part, Direction facing) {
@@ -28,7 +28,7 @@ public abstract class BedLikeBreak {
     }
 
     @WrapOperation(method = "playerWillDestroy", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/HorizontalDirectionalBlock;playerWillDestroy(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/level/block/state/BlockState;"))
-    private BlockState bvext$carefulBreak_bedlike(BedBlock instance, Level level, BlockPos blockPos, BlockState blockState, Player player, Operation<BlockState> original) {
+    private BlockState bvext$carefulBreak_bedlike(AbstractBedBlock instance, Level level, BlockPos blockPos, BlockState blockState, Player player, Operation<BlockState> original) {
         if (Settings.carefulBreak && player.isShiftKeyDown()) {
             BedPart part = blockState.getValue(BedBlock.PART);
             var headPos = part == BedPart.HEAD ? blockPos : bvext$getOtherPos(blockPos, blockState, part);
