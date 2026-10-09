@@ -3,5 +3,6 @@
   "carpet.rule.botsDontSleep.desc" : "Makes carpet bots don't count towards playersSleepingPercentage",
   "carpet.rule.botPlayerListPrefix.desc": "Adds a prefix to bots on the player list",
   "carpet.rule.disableEndermanGriefing.desc" : "Removes the hability for enderman to pick and place blocks",
-  "carpet.rule.largaDissoEnderman.desc" : "Hitting an enderman makes it drop its held block"
+  "carpet.rule.largaDissoEnderman.desc" : "Hitting an enderman makes it drop its held block",
+  "carpet.rule.glowPersistentMobs.desc" : "Makes persistent mobs glow"
 }

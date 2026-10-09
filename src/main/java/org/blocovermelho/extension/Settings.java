@@ -30,4 +30,9 @@ public class Settings {
     )
     public static boolean largaDissoEnderman = false;
 
+    @Rule(
+            categories = {SURVIVAL, "bv-extension"}
+    )
+    public static boolean glowPersistentMobs = false;
+
 }
